@@ -1,3 +1,16 @@
+import express from 'express';
+
+const app = express();
+
+app.get('/', (req, res) => {
+    res.send("hello");
+});
+
+app.listen(707, () => {
+    console.log("server is running at port 707");
+});
+
+
 // import http from 'http';
 
 // const server = http.createServer((req, res) => {
@@ -12,5 +25,3 @@
 // server.listen(7007, () => {
 //     console.log(`server running at port ${7007}`);
 // });
-
-
