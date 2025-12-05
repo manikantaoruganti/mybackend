@@ -1,9 +1,29 @@
+// import express from 'express';
+
+// const app = express();
+
+// app.get('/', (req, res) => {
+//     res.send("hello");
+// });
+
+// app.listen(707, () => {
+//     console.log("server is running at port 707");
+// });
 import express from 'express';
 
 const app = express();
-
+ 
 app.get('/', (req, res) => {
     res.send("hello");
+});
+
+ 
+app.get('/users', (req, res) => {
+    res.json({
+        name: "thub",
+        role: "student",
+        status: "active"
+    });
 });
 
 app.listen(707, () => {
