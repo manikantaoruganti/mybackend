@@ -14,10 +14,32 @@
 // app.listen(7080, () => {
 //     console.log("server is running at port 707");
 // });
+// import express from 'express';
+// const app = express();
+// app.use(express.json());
+// let users = ['ram','ram@gmail.com'];
+// app.get('/get-users', (req, res) => {
+//     res.json(users);
+// });
+// app.post('/add-user', (req, res) => {
+//     const { name, email } = req.body;
+
+//     const newUser = {
+//         name,
+//         email
+//     };
+//     users.push(newUser);
+//     res.status(201).json({ message: "User added successfully", user: newUser });
+// });
+// app.listen(7080, () => {
+//     console.log("server is running at port 7080");
+// });
 import express from 'express';
 const app = express();
 app.use(express.json());
-let users = ['ram','ram@gmail.com'];
+let users = [
+    { id: 1, name: 'ram', email: 'ram@gmail.com' }
+];
 app.get('/get-users', (req, res) => {
     res.json(users);
 });
@@ -25,12 +47,29 @@ app.post('/add-user', (req, res) => {
     const { name, email } = req.body;
 
     const newUser = {
+        id: users.length + 1,
         name,
         email
     };
     users.push(newUser);
     res.status(201).json({ message: "User added successfully", user: newUser });
 });
+app.put('/edit-user/:id', (req, res) => {
+    const { id } = req.params;
+    const { name, email } = req.body;
+
+    const user = users.find(u => u.id === parseInt(id));
+
+    if (!user) {
+        return res.status(404).json({ error: "User not found" });
+    }
+
+    if (name) user.name = name;
+    if (email) user.email = email;
+
+    res.json({ message: "User updated successfully", user });
+});
+
 app.listen(7080, () => {
     console.log("server is running at port 7080");
 });
