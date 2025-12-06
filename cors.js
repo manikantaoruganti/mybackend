@@ -37,6 +37,7 @@
 import express from 'express';
 const app = express();
 app.use(express.json());
+
 let users = [
     { id: 1, name: 'ram', email: 'ram@gmail.com' }
 ];
@@ -45,6 +46,10 @@ app.get('/get-users', (req, res) => {
 });
 app.post('/add-user', (req, res) => {
     const { name, email } = req.body;
+
+    if (!name || !email) {
+        return res.status(400).json({ error: "Name and email are required" });
+    }
 
     const newUser = {
         id: users.length + 1,
