@@ -9,26 +9,26 @@
 // app.listen(707, () => {
 //     console.log("server is running at port 707");
 // });
-import express from 'express';
+// import express from 'express';
 
-const app = express();
+// const app = express();
  
-app.get('/', (req, res) => {
-    res.send("hello");
-});
+// app.get('/', (req, res) => {
+//     res.send("hello");
+// });
 
  
-app.get('/users', (req, res) => {
-    res.json({
-        name: "thub",
-        role: "student",
-        status: "active"
-    });
-});
+// app.get('/users', (req, res) => {
+//     res.json({
+//         name: "thub",
+//         role: "student",
+//         status: "active"
+//     });
+// });
 
-app.listen(707, () => {
-    console.log("server is running at port 707");
-});
+// app.listen(707, () => {
+//     console.log("server is running at port 707");
+// });
 
  
 // import http from 'http';
@@ -45,3 +45,26 @@ app.listen(707, () => {
 // server.listen(7007, () => {
 //     console.log(`server running at port ${7007}`);
 // });
+  import express from 'express';
+
+const app = express();
+
+
+app.use(express.json());
+
+app.post('/add-user', (req, res) => {
+  let mydata = req.body;
+  console.log(mydata);
+  res.send("data added");
+});
+
+app.get('/users', (req, res) => {
+  console.log("hello this is");
+  res.send("all users");
+});
+app.listen(7007, () => {
+  console.log(`server running at port 7007`);
+});
+
+
+ 

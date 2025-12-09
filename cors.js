@@ -74,7 +74,17 @@ app.put('/edit-user/:id', (req, res) => {
 
     res.json({ message: "User updated successfully", user });
 });
+app.delete('/delete-user/:id', (req, res) => {
+    const { id } = req.params;
+    const index = users.findIndex(u => u.id === parseInt(id));
 
+    if (index === -1) {
+        return res.status(404).json({ error: "User not found" });
+    }
+
+    const deletedUser = users.splice(index, 1);
+    res.json({ message: "User deleted successfully", user: deletedUser[0] });
+});
 app.listen(7080, () => {
     console.log("server is running at port 7080");
 });
