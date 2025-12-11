@@ -10,7 +10,6 @@
 //     console.log("server is running at port 707");
 // });
 // import express from 'express';
-
 // const app = express();
  
 // app.get('/', (req, res) => {
